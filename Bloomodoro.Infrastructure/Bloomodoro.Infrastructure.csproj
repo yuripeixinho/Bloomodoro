@@ -17,12 +17,16 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Data\NewFolder\" />
-	  <Folder Include="Extensions\" />
-	  <Folder Include="Ioc\" />
+	  <Folder Include="Data\Seeds\" />
 	  <Folder Include="Exception\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bloomodoro.Application\Bloomodoro.Application.csproj" />
+	  <ProjectReference Include="..\Bloomodoro.Domain\Bloomodoro.Domain.csproj" />
 	</ItemGroup>
 </Project>

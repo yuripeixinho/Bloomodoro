@@ -5,5 +5,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+	
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
+		<PackageReference Include="MediatR" Version="12.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Features\Progression\Plant\Commands\" />
+	  <Folder Include="Features\Progression\Plant\Validator\" />
+	  <Folder Include="Features\Progression\Plant\Rules\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\Bloomodoro.Domain\Bloomodoro.Domain.csproj" />
+	</ItemGroup>
 </Project>

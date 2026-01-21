@@ -3,6 +3,12 @@
 public class DimStatus
 {
     public int Id { get; private set; }
-    public required string Name { get; private set; }
-    public required string Description { get; private set; } 
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+
+    public DimStatus(string name, string description)
+    {
+        Name = name;    
+        Description = description;
+    }
 }
