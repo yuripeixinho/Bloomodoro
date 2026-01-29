@@ -1,19 +1,20 @@
-﻿namespace Bloomodoro.Domain.Core.Entities.Progression;
+﻿using Bloomodoro.Domain.Shared;
 
-public class Plant
+namespace Bloomodoro.Domain.Garden.PlantCatalog;
+
+public class PlantSpecies : Entity
 {
-    public int PlantId { get; private set; }
     public string Name { get; private set; }
     public string Description { get; private set; }
     public int MaxLevel { get; private set; }
     public int UnlockOrder { get; private set; }
 
-    private readonly List<PlantLevel> _levels = new();
-    public IReadOnlyCollection<PlantLevel> Levels => _levels.AsReadOnly();
+    private readonly List<GrowthStage> _levels = new();
+    public IReadOnlyCollection<GrowthStage> Levels => _levels.AsReadOnly();
 
-    private Plant() { } // EF Core
+    private PlantSpecies() { } // EF Core
 
-    public Plant(
+    public PlantSpecies(
         string name,
         string description,
         int maxLevel,

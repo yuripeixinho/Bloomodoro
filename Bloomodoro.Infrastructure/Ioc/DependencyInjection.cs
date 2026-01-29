@@ -1,6 +1,7 @@
-﻿using Bloomodoro.Application.Common.Interfaces.Repositories;
+﻿using Bloomodoro.Domain.Garden;
+using Bloomodoro.Domain.Garden.PlantCatalog.Repositories;
 using Bloomodoro.Infrastructure.Data.Context;
-using Bloomodoro.Infrastructure.Data.Repositories;
+using Bloomodoro.Infrastructure.Data.Garden.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +22,7 @@ public static class DependencyInjection
         });
 
         // Repositories
-        services.AddScoped<IPlantRepository, PlantRepository>();
+        services.AddScoped<IPlantSpeciesRepository, PlantSpeciesRepository>();
 
         // MediatR
         services.AddMediatR(cfg =>

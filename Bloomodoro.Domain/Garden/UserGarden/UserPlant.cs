@@ -1,9 +1,9 @@
-﻿namespace Bloomodoro.Domain.Core.Entities.Progression;
+﻿using Bloomodoro.Domain.Shared;
 
-public class UserPlant
+namespace Bloomodoro.Domain.Garden.UserGarden;
+
+public class UserPlant : Entity
 {
-    //public int UserPlantId { get; private set; }
-
     //// Progressão
     //public int Level { get; private set; }
     //public int CurrentXP { get; private set; }

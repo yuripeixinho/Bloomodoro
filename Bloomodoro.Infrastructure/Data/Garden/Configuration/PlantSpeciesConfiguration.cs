@@ -1,16 +1,16 @@
-﻿using Bloomodoro.Domain.Core.Entities.Progression;
+﻿using Bloomodoro.Domain.Garden.PlantCatalog;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Bloomodoro.Infrastructure.Data.EntitiesConfiguration.Progression;
+namespace Bloomodoro.Infrastructure.Data.Garden.Configuration;
 
-public class PlantConfiguration : IEntityTypeConfiguration<Plant>
+public class PlantSpeciesConfiguration : IEntityTypeConfiguration<PlantSpecies>
 {
-    public void Configure(EntityTypeBuilder<Plant> builder)
+    public void Configure(EntityTypeBuilder<PlantSpecies> builder)
     {
-        builder.ToTable(nameof(Plant));
+        builder.ToTable(nameof(PlantSpecies));
 
-        builder.HasKey(p => p.PlantId);
+        builder.HasKey(p => p.Id);
 
         builder.Property(p => p.Name)
             .HasMaxLength(80)

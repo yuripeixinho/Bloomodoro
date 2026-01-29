@@ -1,14 +1,14 @@
-﻿using Bloomodoro.Application.Common.Interfaces.Repositories;
-using Bloomodoro.Application.Features.Progression.Plant.Dtos;
+﻿using Bloomodoro.Application.Features.Progression.Plant.Dtos;
+using Bloomodoro.Domain.Garden.PlantCatalog.Repositories;
 using MediatR;
 
 namespace Bloomodoro.Application.Features.Progression.Plant.Queries.ListPlants;
 
 public class ListPlantHandler : IRequestHandler<ListPlantQuery, IReadOnlyList<PlantListDto>>
 {
-    private readonly IPlantRepository _plantRepository;
+    private readonly IPlantSpeciesRepository _plantRepository;
 
-    public ListPlantHandler(IPlantRepository plantRepository)
+    public ListPlantHandler(IPlantSpeciesRepository plantRepository)
     {
         _plantRepository = plantRepository; 
     }
@@ -20,7 +20,7 @@ public class ListPlantHandler : IRequestHandler<ListPlantQuery, IReadOnlyList<Pl
         var dto = plants
             .Select(p => new PlantListDto
             {
-                PlantId = p.PlantId,
+                Id = p.Id,
                 Name = p.Name,
                 Description = p.Description,
             })

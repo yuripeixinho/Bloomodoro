@@ -14,9 +14,15 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+	  <Folder Include="Common\Interfaces\" />
+	  <Folder Include="Common\Exceptions\" />
 	  <Folder Include="Features\Progression\Plant\Commands\" />
 	  <Folder Include="Features\Progression\Plant\Validator\" />
 	  <Folder Include="Features\Progression\Plant\Rules\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Include="Common\Validation\ValidationMessages.cs" />
 	</ItemGroup>
 	
 	<ItemGroup>

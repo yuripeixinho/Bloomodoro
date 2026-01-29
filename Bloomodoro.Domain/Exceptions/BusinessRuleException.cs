@@ -1,4 +1,4 @@
-﻿namespace BoletoFacil.Domain.Core.Exceptions;
+﻿namespace Bloomodoro.Domain.Exceptions;
 
 public class BusinessRuleException : Exception
 {

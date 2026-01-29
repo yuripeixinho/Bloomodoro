@@ -1,13 +1,14 @@
-﻿namespace Bloomodoro.Domain.Core.Entities.Progression;
+﻿using Bloomodoro.Domain.Shared;
 
-public class PlantLevel
+namespace Bloomodoro.Domain.Garden.PlantCatalog;
+
+public class GrowthStage : Entity
 {
-    public int PlantLevelId {  get; private set; }
     public int Level {  get; private set; }
     public int RequiredXP { get; private set; }
     public string SpriteKey { get; private set; }
 
     // chave estrangeira
-    public Plant Plant { get; private set; }
+    public PlantSpecies Plant { get; private set; }
     public int PlantId { get; private set; }
 }
