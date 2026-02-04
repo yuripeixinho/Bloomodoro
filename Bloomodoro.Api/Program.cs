@@ -28,6 +28,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// 4. ATIVAR OS MIDDLEWARES (A ORDEM IMPORTA MUITO!)
+app.UseRouting();
+
 app.UseAuthentication();
 
 app.UseAuthorization();

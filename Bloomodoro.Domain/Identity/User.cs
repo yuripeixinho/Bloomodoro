@@ -1,6 +1,8 @@
-﻿namespace Bloomodoro.Domain.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-public class User
+namespace Bloomodoro.Domain.Identity;
+
+public class User : IdentityUser
 {
 
 }

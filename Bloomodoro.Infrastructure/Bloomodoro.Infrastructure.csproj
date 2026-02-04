@@ -22,7 +22,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Data\Garden\Seeds\" />
-	  <Folder Include="Data\Identity\" />
 	  <Folder Include="Data\Productivity\" />
 	  <Folder Include="Exception\" />
 	</ItemGroup>
