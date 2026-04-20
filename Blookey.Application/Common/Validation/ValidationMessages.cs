@@ -22,4 +22,10 @@ public static class GenericMessages
 
     public static string FormatoInvalido(string nomeCampo)
         => $"O campo '{nomeCampo}' está em formato inválido.";
+
+    public static string DeveConter(string campo, string requisito) =>
+        $"O campo {campo} deve conter ao menos um(a) {requisito}.";
+
+    public static string DeveSerIgual(string campo, string outroCampo) =>
+        $"O campo {campo} deve ser igual ao campo {outroCampo}.";
 }

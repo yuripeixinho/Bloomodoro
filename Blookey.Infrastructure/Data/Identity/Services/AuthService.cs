@@ -1,5 +1,6 @@
 ﻿using Blookey.Application.Common.Exceptions;
 using Blookey.Application.Common.Interfaces;
+using Blookey.Application.Features.Identity.Dtos;
 using Blookey.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -72,12 +73,13 @@ public class AuthService : IAuthService
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    public async Task<string> RegisterAsync(string username, string email, string password)
+    public async Task<RegisterResponse> RegisterAsync(string name, string email, string password)
     {
         // 1. PREPARAÇÃO DA ENTIDADE
         // Estamos mapeando os dados de entrada para a entidade do Identity.
         var user = new User
         {
+            Name = name,
             UserName = email,       // No Identity, UserName é o identificador de login. Usamos o email.
             Email = email,          // O email para contato/recuperação.
            
@@ -99,6 +101,6 @@ public class AuthService : IAuthService
 
         // 4. RETORNO POSITIVO
         // Se chegou aqui, o usuário está gravado no banco. Retornamos o ID gerado (GUID).
-        return $"Usuário {user.UserName} criado com sucesso!";
+        return new RegisterResponse(user.Id, user.Name, user.Email); // 👈 retorna dados
     }
 }

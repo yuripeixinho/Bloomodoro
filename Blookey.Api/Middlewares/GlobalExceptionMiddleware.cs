@@ -1,6 +1,7 @@
 ﻿using Blookey.Application.Common.Exceptions;
 using Blookey.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.NetworkInformation;
 
 namespace Blookey.Api.Middlewares;
 
@@ -43,7 +44,15 @@ public class GlobalExceptionMiddleware
                 Status = StatusCodes.Status422UnprocessableEntity,
                 Title = "Validation Error",
                 Detail = "One or more validation errors occurred.",
-                Type = "https://httpstatuses.com/422",
+                Type = "https://httpstatuses.com/422"
+            },
+
+            IdentityValidationException identityValidationExceptionEx => new ValidationProblemDetails(identityValidationExceptionEx.Errors)
+            {
+                Status = StatusCodes.Status422UnprocessableEntity,
+                Title = "Validation Error",
+                Detail = "One or more validation errors occurred.",
+                Type = "https://httpstatuses.com/422"
             },
 
             // CASO 2: Regra de Negócio

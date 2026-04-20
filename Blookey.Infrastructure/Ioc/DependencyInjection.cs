@@ -3,6 +3,8 @@ using Blookey.Application.Common.Interfaces;
 using Blookey.Infrastructure.Data.Auth.Services;
 using Blookey.Infrastructure.Data.Context;
 using Blookey.Infrastructure.Extensions;
+using Blookey.Infrastructure.Integrations.Assas;
+using Blookey.Infrastructure.Integrations.Email;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,9 @@ public static class DependencyInjection
 
         // Services
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IAssasService, AssasService>();
+        services.AddScoped<IEmailService, EmailService>();
+
 
         // MediatR
         services.AddMediatR(cfg =>
@@ -38,7 +43,6 @@ public static class DependencyInjection
             // Adiciona o comportamento de validação na pipeline
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
-
 
         return services;
     }

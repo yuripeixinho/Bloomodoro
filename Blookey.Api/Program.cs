@@ -1,4 +1,5 @@
 using Blookey.Api.Middlewares;
+using Blookey.Infrastructure.Extensions;
 using Blookey.Infrastructure.Ioc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
@@ -14,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddFluentValidationConfiguration();
+builder.Services.AddFluentValidationConfiguration();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();

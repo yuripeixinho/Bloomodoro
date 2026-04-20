@@ -15,8 +15,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Folder Include="Features\Auth\Dtos\" />
-	  <Folder Include="Features\Auth\Rules\" />
+	  <Folder Include="Features\Identity\Rules\" />
 	</ItemGroup>
 	
 	<ItemGroup>
