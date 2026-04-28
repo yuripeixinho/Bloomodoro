@@ -106,6 +106,15 @@ public class GlobalExceptionMiddleware
                 Detail = assasUnauthorized.ResponseBody,
                 Type = "https://httpstatuses.com/401"
             },
+
+            SystemUnauthorizedAccessException systemUnauthorized => new ProblemDetails
+            {
+                Status = StatusCodes.Status401Unauthorized,
+                Title = "Sistema interno não autorizadopu o acesso",
+                Detail = systemUnauthorized.Message,
+                Type = "https://httpstatuses.com/401"
+            },  
+
             // CASO 5: Erro genérico não tratado (Default)
             _ => new ProblemDetails
             {

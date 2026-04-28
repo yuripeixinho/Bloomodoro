@@ -13,7 +13,6 @@ public class BlookeyContext : IdentityDbContext<User>, IUnitOfWork
     public DbSet<UserAddress> UserAddresses{ get; private set; }
     public DbSet<UserPhone> UserPhones { get; private set; }
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Ela configura as chaves primárias do Identity (UserLogin, UserRole, etc.)

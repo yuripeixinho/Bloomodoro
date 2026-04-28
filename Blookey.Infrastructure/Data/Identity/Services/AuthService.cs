@@ -44,10 +44,9 @@ public class AuthService : IAuthService
         // 1. Definir as Claims (Dados que vão dentro do Token)
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id), // ID do Usuário (Padrão)
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // ID do Token
-            new Claim("nome_completo", user.UserName) // Claim Personalizada
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), 
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
         };
 
         // 2. Obter a chave secreta do appsettings.json

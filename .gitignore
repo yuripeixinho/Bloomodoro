@@ -63,9 +63,9 @@ wwwroot/
 Migrations/
 
 # Secrets & Configs
-appsettings.Development.json
-appsettings.Local.json
-secrets.json
+appsettings.json
+appsettings.*.json
+Blookey.Api/appsettings.json
 .env
 
 # Docker & Kubernetes

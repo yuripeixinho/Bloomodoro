@@ -22,6 +22,6 @@ public class UserAddress
         Complement = complement;
         Province = province;
         PostalCode = postalCode;
-        UserId = "ad1b578e-25d8-4aa9-a105-99c939c73bf3";
+        UserId = userId;
     }
 }

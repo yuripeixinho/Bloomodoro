@@ -1,8 +1,11 @@
 ﻿using Blookey.Domain.Identity;
 using Blookey.Infrastructure.Data.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Blookey.Infrastructure.Extensions;
 
@@ -10,22 +13,41 @@ public static class IdentityServiceExtensions
 {
     public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
-        // 2. Configurar o Identity
-        services.AddIdentity<User, IdentityRole>(options =>
+        services
+            .AddAuthentication(options =>
+            {
+                // 👇Força JWT mesmo com AddIdentity configurado
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+              .AddJwtBearer(options =>
+              {
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuerSigningKey = true,
+                      IssuerSigningKey = new SymmetricSecurityKey(
+                          Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!)),
+                      ValidateIssuer = true,
+                      ValidIssuer = configuration["Jwt:Issuer"],
+                      ValidateAudience = true,
+                      ValidAudience = configuration["Jwt:Audience"],
+                  };
+              });
+
+        // 👇 AddIdentityCore em vez de AddIdentity — não sobrescreve os schemes
+        services.AddIdentityCore<User>(options =>
         {
             options.User.RequireUniqueEmail = true;
-        })
-        .AddEntityFrameworkStores<BlookeyContext>()
-        .AddDefaultTokenProviders() // Necessário para "Esqueci minha senha", etc.
-        .AddErrorDescriber<PortugueseIdentityErrorDescriber>(); 
-
-        services.Configure<IdentityOptions>(options =>
-        {
             options.Password.RequireDigit = true;
             options.Password.RequiredLength = 8;
-            options.Password.RequireNonAlphanumeric = false; // Ex: não obrigar @!#
-            options.User.RequireUniqueEmail = true;
-        });
+            options.Password.RequireNonAlphanumeric = false;
+        })
+        .AddSignInManager()                                 
+        .AddRoles<IdentityRole>()                              // se usar roles
+        .AddEntityFrameworkStores<BlookeyContext>()
+        .AddDefaultTokenProviders()
+        .AddErrorDescriber<PortugueseIdentityErrorDescriber>();
 
         return services;
     }

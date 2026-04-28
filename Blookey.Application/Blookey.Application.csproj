@@ -5,6 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\Identity\Rules\**" />
+    <EmbeddedResource Remove="Features\Identity\Rules\**" />
+    <None Remove="Features\Identity\Rules\**" />
+  </ItemGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
@@ -12,10 +18,6 @@
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
 		<PackageReference Include="MediatR" Version="12.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Features\Identity\Rules\" />
 	</ItemGroup>
 	
 	<ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using Blookey.Application.Features.Address.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blookey.Api.Controllers;
@@ -14,7 +15,7 @@ public class AddressController : ApiControllerBase
         _mediator = mediator;
     }
 
-    //[Authorize]
+    [Authorize]
     [HttpPost("address")]
     public async Task<ActionResult> Create([FromBody] CreateAddressCommand command)
     {

@@ -1,4 +1,5 @@
-﻿using Blookey.Application.Common.Interfaces;
+﻿using Blookey.Application.Common.Exceptions;
+using Blookey.Application.Common.Interfaces;
 using MediatR;
 
 namespace Blookey.Application.Features.Identity.Commands.Auth;
@@ -17,7 +18,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginResponse>
         var token = await _authService.LoginAsync(command.Email, command.Password);
        
         if(string.IsNullOrEmpty(token))
-            throw new Exception("Credenciais inválidas"); // Ou use Notification Pattern / Result Pattern
+            throw new UnauthorizedException("Email ou senha inválidas"); 
 
         return new LoginResponse(token, command.Email);
     }

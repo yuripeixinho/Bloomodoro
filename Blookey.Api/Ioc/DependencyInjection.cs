@@ -1,5 +1,7 @@
 ﻿using Blookey.Application.Common.Behaviors;
 using Blookey.Application.Common.Interfaces;
+using Blookey.Application.Interfaces;
+using Blookey.Application.Services;
 using Blookey.Domain.Interfaces;
 using Blookey.Infrastructure.Data.Context;
 using Blookey.Infrastructure.Data.Identity.Services;
@@ -14,7 +16,6 @@ namespace Blookey.Api.Ioc;
 
 public static class DependencyInjection
 {
-
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<BlookeyContext>());
@@ -26,12 +27,14 @@ public static class DependencyInjection
             );
         });
 
+        // Configuração de autenticação e autorização  
         services.AddIdentityConfiguration(configuration);
 
         // HTTPClients
+        services.AddHttpContextAccessor();
         services.AddHttpClient<AssasHttpClient>();
         services.Configure<AssasClientOptions>(configuration.GetSection(AssasClientOptions.Section));
-
+        services.AddScoped<ICurrentUser, CurrentUserService>();
 
         // Repositories
         services.AddScoped<IAddressRepository, AddressRepository>();
@@ -40,9 +43,6 @@ public static class DependencyInjection
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IAssasSubaccountService, AssasSubaccountService>();
         services.AddScoped<IEmailService, EmailService>();
-
-
-
 
         // MediatR
         services.AddMediatR(cfg =>
